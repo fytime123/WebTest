@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
         webView.setWebViewClient(new MyWebViewClient());
         webView.setWebChromeClient(new MyWebChromeClient());
 
-        webView.loadUrl("https://bc66.github.io/lucky-airdrop/#/");
+        webView.loadUrl("https://iq.uniqlo.cn/");
     }
 
     @Override
