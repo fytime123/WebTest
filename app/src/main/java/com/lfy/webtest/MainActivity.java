@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.webkit.ConsoleMessage;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -49,6 +52,7 @@ public class MainActivity extends Activity {
         }
 
         webView.setWebViewClient(new MyWebViewClient());
+        webView.setWebChromeClient(new MyWebChromeClient());
 
         webView.loadUrl("https://iq.uniqlo.cn/");
     }
@@ -86,6 +90,19 @@ public class MainActivity extends Activity {
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error){
             handler.proceed();
+        }
+
+
+    }
+
+    private class MyWebChromeClient extends WebChromeClient {
+
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+
+            Log.d("liufuyi", consoleMessage.message() + " -- From line " + consoleMessage.lineNumber() + " of " + consoleMessage.sourceId());
+
+            return super.onConsoleMessage(consoleMessage);
         }
     }
 
