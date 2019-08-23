@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
         init();
     }
 
-    private void init(){
+    private void init() {
         WebSettings set = webView.getSettings();
         set.setJavaScriptEnabled(true);
         set.setUseWideViewPort(true);
@@ -54,7 +54,10 @@ public class MainActivity extends Activity {
         webView.setWebViewClient(new MyWebViewClient());
         webView.setWebChromeClient(new MyWebChromeClient());
 
-        webView.loadUrl("https://iq.uniqlo.cn/");
+        String userAgent = set.getUserAgentString();
+        Log.v("liufuyi", "userAgent=" + userAgent);
+
+        webView.loadUrl("http://uniqloai.applesay.cn/h5app/");
     }
 
     @Override
@@ -85,10 +88,10 @@ public class MainActivity extends Activity {
         super.onDestroy();
     }
 
-    private class MyWebViewClient extends WebViewClient{
+    private class MyWebViewClient extends WebViewClient {
 
         @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error){
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             handler.proceed();
         }
 
